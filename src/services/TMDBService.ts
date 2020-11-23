@@ -114,7 +114,7 @@ export default class TMDBService {
                     case MediaType.PERSON:
                         return new Person(result);
                     default:
-                        return;
+                        return undefined;
                 }
             }));
             searchResult = { page: data.page, total_pages: data.total_pages, results }
@@ -143,7 +143,7 @@ export default class TMDBService {
                         case MediaType.TV:
                             return new Tv(data);
                         default:
-                            return;
+                            return undefined;
                     }
                 }))
             }
@@ -157,7 +157,7 @@ export default class TMDBService {
 
     async getDetail(id: number, type: MediaType): Promise<Multi> {
 
-        let detail = { id, media_type: type } as Multi;
+        let detail: Multi;
         try {
             const url = getDetailUrl(id, type);
             const response = await this.axiosInstance.get(url);
@@ -176,7 +176,7 @@ export default class TMDBService {
         } catch (error) {
             console.log('getDetail - ERROR : ' + error);
         }
-        return detail;
+        return detail!;
     }
 
 }
