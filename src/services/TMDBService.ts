@@ -155,9 +155,9 @@ export default class TMDBService {
     }
 
 
-    async getDetail(id: number, type: MediaType): Promise<Multi> {
+    async getDetail(id: number, type: MediaType): Promise<Multi | undefined> {
 
-        let detail: Multi;
+        let detail: Multi | undefined;
         try {
             const url = getDetailUrl(id, type);
             const response = await this.axiosInstance.get(url);
@@ -176,7 +176,7 @@ export default class TMDBService {
         } catch (error) {
             console.log('getDetail - ERROR : ' + error);
         }
-        return detail!;
+        return detail;
     }
 
 }

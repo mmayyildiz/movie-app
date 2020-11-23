@@ -26,9 +26,11 @@ const Detail = ({ location }: DetailProps) => {
             const { id, type } = location.state;
             (async () => {
                 const detail = await TMDBService.getInstance().getDetail(id, type);
-                const cast = await TMDBService.getInstance().getCast(detail);
-                setDetail(detail);
-                setCast(cast);
+                if (detail) {
+                    const cast = await TMDBService.getInstance().getCast(detail);
+                    setDetail(detail);
+                    setCast(cast);
+                }
             })();
         }
 
@@ -56,7 +58,6 @@ const Detail = ({ location }: DetailProps) => {
 
 
     return (
-
         detail ?
             <React.Fragment>
                 <div className="detail-header" style={{ backgroundImage: `url(${backgroundImg})` }}>
