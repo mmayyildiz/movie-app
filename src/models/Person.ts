@@ -1,4 +1,3 @@
-import { isGetAccessor } from "typescript";
 import { API_KEY } from "../constants";
 import { Media } from "./Media";
 import { MediaType } from "./MediaType";

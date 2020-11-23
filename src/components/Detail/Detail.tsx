@@ -27,7 +27,6 @@ const Detail = ({ location }: DetailProps) => {
             (async () => {
                 const detail = await TMDBService.getInstance().getDetail(id, type);
                 const cast = await TMDBService.getInstance().getCast(detail);
-                console.log('DETAIL ', detail);
                 setDetail(detail);
                 setCast(cast);
             })();
@@ -64,7 +63,7 @@ const Detail = ({ location }: DetailProps) => {
                     <div className="custom-bg">
                         <div className="detail-container">
                             <div className="img-container">
-                                <img className="detail-img" src={posterImg} />
+                                <img alt='poster' className="detail-img" src={posterImg} />
                             </div>
                             <div className="details-container">
                                 <div>
@@ -76,7 +75,7 @@ const Detail = ({ location }: DetailProps) => {
                                                     {voteAverage}
                                                     <span className="small-text">/ 10 </span>
                                                 </span>
-                                                <img className="star-img" src="/images/star.png" />
+                                                <img alt='star' className="star-img" src="/images/star.png" />
                                             </>
                                         }
                                     </h1>

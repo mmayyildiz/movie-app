@@ -41,9 +41,8 @@ class Dashboard extends PureComponent<DashboardProps, DashboardState> {
     observer?: IntersectionObserver;
 
     fetchData = async (page: number) => {
-        console.log('fetchdata');
-        this.setState({ loading: true });
 
+        this.setState({ loading: true });
         let data: SearchResponse<Multi>;
 
         switch (this.state.searchOption) {
@@ -85,9 +84,7 @@ class Dashboard extends PureComponent<DashboardProps, DashboardState> {
 
 
     componentDidMount() {
-        console.log('componentDidMount');
         this.fetchData(1);
-
         // Create an observer
         this.observer = new IntersectionObserver(
             entries => {
@@ -110,7 +107,6 @@ class Dashboard extends PureComponent<DashboardProps, DashboardState> {
     }
 
     componentDidUpdate(_prevProps: DashboardProps, prevState: DashboardState) {
-        console.log('componentDidUpdate');
         if (prevState.searchKey !== this.state.searchKey || prevState.searchOption !== this.state.searchOption) {
             this.fetchData(1);
         }

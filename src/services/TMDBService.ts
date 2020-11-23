@@ -46,10 +46,10 @@ export default class TMDBService {
             const response = await this.axiosInstance.get<SearchResponse<Movie>>(
                 SEARCH_MOVIE_URL + `&language=en-US&query=${searchKey}&page=${page}`);
 
-            const result: SearchResponse<Movie> = response.data;
-            const results = result.results.map(result => new Movie({ ...result, media_type: MediaType.MOVIE }))
+            const data: SearchResponse<Movie> = response.data;
+            const results = data.results.map(result => new Movie({ ...result, media_type: MediaType.MOVIE }))
 
-            movies = { page: result.page, total_pages: result.total_pages, results };
+            movies = { page: data.page, total_pages: data.total_pages, results };
 
         } catch (error) {
             console.log('fetchMovies - ERROR : ' + error);
@@ -65,9 +65,9 @@ export default class TMDBService {
             const response = await this.axiosInstance.get<SearchResponse<Tv>>(
                 SEARCH_TV_URL + `&language=en-US&query=${searchKey}&page=${page}`);
 
-            const result: SearchResponse<Tv> = response.data;
-            const results = result.results.map(result => new Tv({ ...result, media_type: MediaType.TV }))
-            shows = { page: result.page, total_pages: result.total_pages, results };
+            const data: SearchResponse<Tv> = response.data;
+            const results = data.results.map(result => new Tv({ ...result, media_type: MediaType.TV }))
+            shows = { page: data.page, total_pages: data.total_pages, results };
 
         } catch (error) {
             console.log('fetchTvShows - ERROR : ' + error);
@@ -84,10 +84,10 @@ export default class TMDBService {
             const response = await this.axiosInstance.get<SearchResponse<Person>>(
                 SEARCH_PERSON_URL + `&language=en-US&query=${searchKey}&page=${page}`);
 
-            const result: SearchResponse<Person> = response.data;
-            const results: Person[] = result.results.map(result => new Person({ ...result, media_type: MediaType.PERSON }));
+            const data: SearchResponse<Person> = response.data;
+            const results: Person[] = data.results.map(result => new Person({ ...result, media_type: MediaType.PERSON }));
 
-            actors = { page: result.page, total_pages: result.total_pages, results }
+            actors = { page: data.page, total_pages: data.total_pages, results }
 
         } catch (error) {
             console.log('fetchActors - ERROR : ' + error);
@@ -104,8 +104,8 @@ export default class TMDBService {
             const response = await this.axiosInstance.get<SearchResponse<Multi>>(
                 SEARCH_MULTI_URL + `&language=en-US&query=${searchKey}&page=${page}`);
 
-            const result: SearchResponse<Multi> = response.data;
-            const results: Multi[] = _.compact(result.results.map(result => {
+            const data: SearchResponse<Multi> = response.data;
+            const results: Multi[] = _.compact(data.results.map(result => {
                 switch (result.media_type) {
                     case MediaType.MOVIE:
                         return new Movie(result);
@@ -113,9 +113,11 @@ export default class TMDBService {
                         return new Tv(result);
                     case MediaType.PERSON:
                         return new Person(result);
+                    default:
+                        return;
                 }
             }));
-            searchResult = { page: result.page, total_pages: result.total_pages, results }
+            searchResult = { page: data.page, total_pages: data.total_pages, results }
 
         } catch (error) {
             console.log('fetchAll - ERROR : ' + error);
@@ -141,6 +143,7 @@ export default class TMDBService {
                         case MediaType.TV:
                             return new Tv(data);
                         default:
+                            return;
                     }
                 }))
             }
@@ -154,24 +157,22 @@ export default class TMDBService {
 
     async getDetail(id: number, type: MediaType): Promise<Multi> {
 
-        let detail: Multi = { id, media_type: type } as Multi;
+        let detail = { id, media_type: type } as Multi;
         try {
             const url = getDetailUrl(id, type);
-            console.log('URL ', url);
-            console.log('type ', type);
             const response = await this.axiosInstance.get(url);
 
-            detail = ((type) => {
-                switch (type) {
-                    case MediaType.MOVIE:
-                        return new Movie({ ...response.data, media_type: MediaType.MOVIE });
-                    case MediaType.TV:
-                        return new Tv({ ...response.data, media_type: MediaType.TV });
-                    case MediaType.PERSON:
-                        return new Person({ ...response.data, media_type: MediaType.PERSON });
-                };
-            })(type);
-
+            switch (type) {
+                case MediaType.MOVIE:
+                    detail = new Movie({ ...response.data, media_type: MediaType.MOVIE });
+                    break;
+                case MediaType.TV:
+                    detail = new Tv({ ...response.data, media_type: MediaType.TV });
+                    break;
+                case MediaType.PERSON:
+                    detail = new Person({ ...response.data, media_type: MediaType.PERSON });
+                    break;
+            }
         } catch (error) {
             console.log('getDetail - ERROR : ' + error);
         }
