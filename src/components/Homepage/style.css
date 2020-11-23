@@ -1,0 +1,41 @@
+.homepage-container{
+   height: 40rem;
+   text-align: center;
+}
+
+.search-container{
+   width:100%;
+   margin: 0;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   -ms-transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
+
+
+}
+
+.search-box{
+   width:50%;
+   padding-left: 1rem;
+   font-size: 2rem;
+   line-height: 3rem;
+   border: none;
+   border-radius: 1rem;
+}
+
+.search-btn{
+   margin-left:1rem;
+   font-size:2rem;
+   height: 3rem;
+   width: 10rem;
+   border: none;
+   border-radius: 10rem;
+   cursor: pointer;
+   background: #00cd50;
+   color: #fff;
+}
+
+.search-btn:focus{
+   outline: none;
+}

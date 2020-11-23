@@ -1,0 +1,39 @@
+.header-container {
+    border-bottom: 2px solid black;
+    padding:1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-search-container {
+    width:50%;
+}
+
+.header-search-box {
+    width: 70%;
+    font-size:1.2rem;
+    padding-left: 1rem;
+    line-height: 2rem;
+    margin-left: 1rem;
+}
+
+.header-search-btn{
+    font-size: 1.2rem;
+    height:2rem;
+    width:8rem;
+    border: none;
+    border-radius: 10rem;
+    cursor: pointer;
+    background: #1a75ff;
+    color: #fff;
+}
+
+.header-search-btn:focus{
+    outline:0;
+    border: none;
+}
+
+.header-search-option{
+    font-size: 1.2rem;
+    width:30%;
+}
