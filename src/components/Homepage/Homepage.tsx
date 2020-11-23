@@ -9,9 +9,9 @@ function Homepage() {
     return (
         <div className="homepage-container">
             <div className="search-container">
-                <input className="search-box" type="text" value={searchKey} onChange={(e) => setSearchKey(e.target.value)} placeholder="Search for a movie, tv show, person...." autoFocus />
+                <input className="big-search-box" type="text" value={searchKey} onChange={(e) => setSearchKey(e.target.value)} placeholder="Search for a movie, tv show, person...." autoFocus />
                 <Link to={`/dashboard/${searchKey}`}>
-                    <input className="search-btn" type="button" value="Search" />
+                    <input className="go-search-btn" type="button" value="Search" />
                 </Link>
             </div>
         </div>

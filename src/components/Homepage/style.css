@@ -11,11 +11,9 @@
    left: 50%;
    -ms-transform: translate(-50%, -50%);
    transform: translate(-50%, -50%);
-
-
 }
 
-.search-box{
+.big-search-box{
    width:50%;
    padding-left: 1rem;
    font-size: 2rem;
@@ -24,7 +22,7 @@
    border-radius: 1rem;
 }
 
-.search-btn{
+.go-search-btn{
    margin-left:1rem;
    font-size:2rem;
    height: 3rem;

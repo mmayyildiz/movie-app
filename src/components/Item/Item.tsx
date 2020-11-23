@@ -1,9 +1,8 @@
 import React from 'react'
-import { SMALL_IMAGE_SIZE } from '../../constants/sizeConstants';
+import { SMALL_IMAGE_SIZE } from '../../constants';
 import { Link } from 'react-router-dom';
 import { Multi } from '../../models/Multi';
 import './style.css';
-
 
 const Item = ({ result }: { result: Multi }) => {
 

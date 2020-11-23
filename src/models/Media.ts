@@ -1,4 +1,4 @@
-import { API_KEY } from "../constants/urlConstants";
+import { API_KEY } from "../constants";
 import { Multi } from "./Multi";
 
 export abstract class Media extends Multi {

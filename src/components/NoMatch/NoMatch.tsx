@@ -2,8 +2,10 @@ import React from 'react'
 
 export default function NoMatch() {
     return (
-        <div>
-            NOT FOUND
-        </div>
+        <div style={{
+            textAlign: 'center', padding: '10%'
+        }}>
+            <h1> PAGE NOT FOUND</h1>
+        </ div>
     )
 }

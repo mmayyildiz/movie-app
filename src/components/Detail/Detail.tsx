@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { LARGE_IMAGE_SIZE, MEDIUM_IMAGE_SIZE } from '../../constants/sizeConstants';
+import React, { useEffect, useState } from 'react'
+import { LARGE_IMAGE_SIZE, MEDIUM_IMAGE_SIZE } from '../../constants';
 import TMDBService from '../../services/TMDBService';
 import ItemList from '../ItemList/ItemList';
 import { Multi } from '../../models/Multi';

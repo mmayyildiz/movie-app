@@ -1,12 +1,11 @@
 import axios, { AxiosInstance } from 'axios';
 import {
     BASE_URL,
-    getDetailUrl,
     SEARCH_MOVIE_URL,
     SEARCH_MULTI_URL,
     SEARCH_PERSON_URL,
     SEARCH_TV_URL
-} from '../constants/urlConstants';
+} from '../constants';
 import Person from '../models/Person';
 import Movie from '../models/Movie';
 import { Multi } from '../models/Multi';
@@ -15,6 +14,7 @@ import Tv from '../models/Tv';
 import { MediaType } from '../models/MediaType';
 import _ from 'lodash';
 import { Media } from '../models/Media';
+import { getDetailUrl } from '../utils';
 
 export default class TMDBService {
 
@@ -175,9 +175,7 @@ export default class TMDBService {
         } catch (error) {
             console.log('getDetail - ERROR : ' + error);
         }
-
         return detail;
-
     }
 
 }

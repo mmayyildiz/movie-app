@@ -7,7 +7,6 @@ import ItemList from '../ItemList/ItemList';
 import Search from '../Search/Search';
 import { MediaType } from '../../models/MediaType';
 
-
 interface DashboardProps {
     match: {
         params: {
@@ -127,10 +126,6 @@ class Dashboard extends PureComponent<DashboardProps, DashboardState> {
     }
 
     render() {
-        const loadingCSS = {
-            height: "100px",
-            margin: "30px"
-        };
 
         const loadingTextCSS = { display: this.state.loading ? "block" : "none" };
 
@@ -140,9 +135,8 @@ class Dashboard extends PureComponent<DashboardProps, DashboardState> {
             <div className="dashboard-container">
                 <Search onClick={this.search} />
                 { (results.length) > 0 && <ItemList results={results} />}
-                <div
+                <div className="loading"
                     ref={this.loadingRef as React.RefObject<HTMLDivElement>}
-                    style={loadingCSS}
                 >
                     <span style={loadingTextCSS}>Loading...</span>
                 </div>
